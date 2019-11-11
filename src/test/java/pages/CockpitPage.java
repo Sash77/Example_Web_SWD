@@ -10,6 +10,7 @@ public class CockpitPage extends HelperBase {
     }
 
     public double returnRenten() {
+        waitElement(By.xpath("//*[contains(@class,'_actual-income__value')]"), 2000);
         return Double.parseDouble(wd.findElement(By.xpath("//*[contains(@class,'_actual-income__value')]"))
                 .getText().split(" ")
                 [0].replace(".", "").replace(",", "."));

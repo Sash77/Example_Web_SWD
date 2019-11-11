@@ -61,4 +61,17 @@ public class HelperBase {
 
         return webDriverWait;
     }
+
+    public void waitElement(By locator, int mlSec){
+        Boolean present = false;
+        long timeStart = System.currentTimeMillis();
+        long timeEnd = timeStart+mlSec;
+        while (timeStart<=timeEnd){
+            present = isElementPresent(locator);
+            timeStart = System.currentTimeMillis();
+            if (present){
+                break;
+            }
+        }
+    }
 }

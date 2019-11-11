@@ -13,6 +13,8 @@ public class ManagerPage extends HelperBase {
 
     public int qntOfContracts(String contractType) {
 
+        waitElement(By.xpath("//span[contains(@class,'cucumber-contract-status')]"), 2000);
+
         return wd.findElements(By.xpath("//span[contains(@class,'cucumber-contract-status')]"))
                 .stream().filter(webElement -> webElement.getText().toLowerCase().equals(contractType.toLowerCase()))
                 .collect(Collectors.toList()).size();

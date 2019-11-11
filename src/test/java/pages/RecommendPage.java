@@ -17,6 +17,8 @@ public class RecommendPage extends HelperBase {
         boolean byDefaultValue = false;
         boolean currentValue = false;
 
+        waitElement(By.xpath("//div[@class='ember_page__wrapper']/div/div/div"), 2000);
+
         List<WebElement> listWebElements = wd.findElements(By.xpath("//div[@class='ember_page__wrapper']/div/div/div"));
         for (int i = 0; i < listWebElements.size(); i++) {
             try {
