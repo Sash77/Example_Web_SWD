@@ -1,0 +1,7 @@
+[
+  {
+    "testCase":"Vertrage",
+  "contractType":"Gut versichert",
+    "expectedQnt":3
+  }
+]
