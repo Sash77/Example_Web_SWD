@@ -42,14 +42,14 @@ public class ApplicationManager {
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
         if (browser.equals(BrowserType.FIREFOX)) {
-            System.setProperty("webdriver.gecko.driver", "D:/Work/geckodriver.exe");
+            System.setProperty("webdriver.gecko.driver", String.format("%s/geckodriver.exe",properties.getProperty("driversFolder")));
             wd = new FirefoxDriver();
         } else if (browser.equals(BrowserType.CHROME)) {
-            System.setProperty("webdriver.chrome.driver", "D:/Work/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", String.format("%s/chromedriver.exe",properties.getProperty("driversFolder")));
             wd = new ChromeDriver();
 
         } else if (browser.equals(BrowserType.EDGE)) {
-            System.setProperty("webdriver.ie.driver", "D:/Work/msedgedriver.exe");
+            System.setProperty("webdriver.ie.driver", String.format("%s/msedgedriver.exe",properties.getProperty("driversFolder")));
             wd = new InternetExplorerDriver();
         }
 
