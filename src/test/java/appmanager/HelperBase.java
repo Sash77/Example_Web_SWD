@@ -1,15 +1,11 @@
 package appmanager;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HelperBase {
     protected WebDriver wd;
-    private WebDriverWait webDriverWait;
 
     public HelperBase(WebDriver wd) {
         this.wd = wd;
@@ -30,15 +26,6 @@ public class HelperBase {
         }
     }
 
-    public boolean isAlertPresent() {
-        try {
-            wd.switchTo().alert();
-            return true;
-        } catch (NoAlertPresentException e) {
-            return false;
-        }
-    }
-
     protected boolean isElementPresent(By locator) {
         try {
             wd.findElement(locator);
@@ -48,30 +35,17 @@ public class HelperBase {
         }
     }
 
-    public void makeSelect(String locator, String text) {
-        Select select = new Select(wd.findElement(By.xpath(locator)));
-        select.selectByValue(text);
-    }
-
-    public WebDriverWait getWait() {
-
-        if (webDriverWait == null) {
-            webDriverWait = new WebDriverWait(wd, 10);
-        }
-
-        return webDriverWait;
-    }
-
-    public void waitElement(By locator, int mlSec){
+    public boolean waitElement(By locator, int mlSec) {
         Boolean present = false;
         long timeStart = System.currentTimeMillis();
-        long timeEnd = timeStart+mlSec;
-        while (timeStart<=timeEnd){
+        long timeEnd = timeStart + mlSec;
+        while (timeStart <= timeEnd) {
             present = isElementPresent(locator);
             timeStart = System.currentTimeMillis();
-            if (present){
+            if (present) {
                 break;
             }
         }
+        return present;
     }
 }

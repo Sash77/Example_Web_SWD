@@ -39,5 +39,9 @@ public class RecommendPage extends HelperBase {
         return byDefaultValue;
     }
 
+    public void pressLinkInviteFriend(String text) {
+        waitElement(By.xpath("//a[contains(.,'Clark jetzt empfehlen')]"), 2000);
+        click(By.xpath(String.format("//a[contains(.,'%s')]", text)));
+    }
 
 }

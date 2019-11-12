@@ -2,6 +2,7 @@ package tests;
 
 import appmanager.DataProviderDocument;
 import model.EntityBedarf;
+import model.EntityEmail;
 import model.EntityRente;
 import model.EntityVertrage;
 import org.testng.annotations.Test;
@@ -34,6 +35,17 @@ public class TestsForClark extends TestBase {
         app.goTo().openRecommendations();
 
         assertTrue(app.getRecommendPage().searchTextInAllColumns(dataProvider.getText()));
+
+    }
+
+    @Test(dataProvider = "validSendEmail", dataProviderClass = DataProviderDocument.class, alwaysRun = true)
+    public void testSendEmail(EntityEmail dataProvider) {
+
+        app.goTo().openRecommendations();
+        app.getRecommendPage().pressLinkInviteFriend(dataProvider.getText());
+
+        app.getInvitationPage().sendEmail(dataProvider.getEmail());
+        assertTrue(app.getInvitationPage().isSendEmailSuccess());
 
     }
 

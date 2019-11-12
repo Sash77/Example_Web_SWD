@@ -6,13 +6,13 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import pages.CockpitPage;
+import pages.InvitationPage;
 import pages.ManagerPage;
 import pages.RecommendPage;
 
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
@@ -26,6 +26,7 @@ public class ApplicationManager {
     private ManagerPage managerPage;
     private CockpitPage cockpitPage;
     private RecommendPage recommendPage;
+    private InvitationPage invitationPage;
 
 
     private String browser;
@@ -35,6 +36,7 @@ public class ApplicationManager {
         properties = new Properties();
     }
 
+    //Create web driver and all pages.
     public void init() throws IOException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
@@ -60,6 +62,7 @@ public class ApplicationManager {
         managerPage = new ManagerPage(wd);
         cockpitPage = new CockpitPage(wd);
         recommendPage = new RecommendPage(wd);
+        invitationPage = new InvitationPage(wd);
 
     }
 
@@ -87,11 +90,12 @@ public class ApplicationManager {
         return recommendPage;
     }
 
+    public InvitationPage getInvitationPage() {
+        return invitationPage;
+    }
+
     public Properties getProperties() {
         return properties;
     }
 
-    public List getBrowserLogs() {
-        return wd.manage().logs().get("browser").getAll();
-    }
 }

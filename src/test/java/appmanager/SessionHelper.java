@@ -13,8 +13,7 @@ public class SessionHelper extends HelperBase {
     public void login(String username, String password) {
         type(By.id("user_email"), username);
         type(By.id("user_password"), password);
-        wd.findElement(By.xpath("//input[@type='submit' and @value='Login']"))
-                .click();
+        click(By.xpath("//input[@type='submit' and @value='Login']"));
     }
 
 }

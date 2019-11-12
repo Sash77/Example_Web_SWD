@@ -3,7 +3,7 @@ package model;
 import com.google.gson.annotations.SerializedName;
 
 public class EntityRente {
-
+    //Entity for data from Json
     @SerializedName("testCase")
     private String testCase;
 
