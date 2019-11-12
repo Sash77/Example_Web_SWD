@@ -26,7 +26,7 @@ public class NavigationHelper extends HelperBase {
 
         wd.get("https://www.clark.de/de/app/manager/recommendations");
 
-        if (isElementPresent(By.xpath("//*[contains(@class,'cucumber-no1-modal-close')]"))) {
+        if (isElementPresent(By.xpath("//*[contains(@class,'cucumber-no1-modal-close')]"))&&wd.findElement(By.xpath("//*[contains(@class,'cucumber-no1-modal-close')]")).isDisplayed()) {
             click(By.xpath("//*[contains(@class,'cucumber-no1-modal-close')]"));
         }
 

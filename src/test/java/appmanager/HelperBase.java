@@ -48,4 +48,18 @@ public class HelperBase {
         }
         return present;
     }
+
+    public boolean waitTextValue(By locator, int mlSec) {
+        Boolean present = false;
+        long timeStart = System.currentTimeMillis();
+        long timeEnd = timeStart + mlSec;
+        while (timeStart <= timeEnd) {
+            present = !wd.findElement(locator).getText().equals("");
+            timeStart = System.currentTimeMillis();
+            if (present) {
+                break;
+            }
+        }
+        return present;
+    }
 }
